@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.thingtrack</groupId>
+	<artifactId>org.simpleframework</artifactId>
+	<version>2.6.2</version>
+	<packaging>jar</packaging>
+
+	<name>org.simpleframework</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<finalName>${project.groupId}.${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>1.4.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<obrRepository>NONE</obrRepository>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>org.simpleframework.xml.*</Export-Package>
+						<Import-Package>!org.xmlpull.v1,*</Import-Package>
+						<Embed-Transitive>true</Embed-Transitive>
+						<!-- <Include-Resource>src/main/resources</Include-Resource> -->
+						<!-- embed all compile and runtime scope dependencies, except those 
+							with artifactIds in the given list -->
+<!-- 						<Embed-Dependency>*;scope=compile|runtime;inline=false;artifactId=simple-xml</Embed-Dependency> -->
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+	</dependencies>
+</project>
